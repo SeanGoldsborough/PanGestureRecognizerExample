@@ -17,7 +17,10 @@ class ViewController: UIViewController {
     //@IBOutlet weak var fileImageView: UIImageView!
     weak var newImageView: UIImageView!
     @IBOutlet weak var trashImageView: UIImageView!
-   
+    
+    var maxXValue = 200
+    var maxYValue = 500
+
     override func viewDidLoad() {
         super.viewDidLoad()
         createAudioPlayer()
@@ -33,7 +36,9 @@ class ViewController: UIViewController {
         newImageView.isUserInteractionEnabled = true
         print("self.fileImageView is now: \(newImageView)")
         
-        newImageView.frame = CGRect(x: 20, y: 20, width: 128, height: 128)
+        var randomX = CGFloat(arc4random_uniform(UInt32(self.maxXValue)))
+        var randomY = CGFloat(arc4random_uniform(UInt32(self.maxYValue)))
+        newImageView.frame = CGRect(x: randomX, y: randomY, width: 128, height: 128)
         
         view.addSubview(newImageView)
         addPanGesture(view: newImageView)
