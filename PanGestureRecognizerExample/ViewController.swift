@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         addPanGesture(view: fileImageView)
         fileViewOrigin = fileImageView.frame.origin
+        view.bringSubview(toFront: fileImageView)
     }
 
     func addPanGesture(view: UIView){
@@ -26,7 +27,9 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(pan)
     }
     
+    // TODO: Refactor
     @objc func handlePan(sender: UIPanGestureRecognizer) {
+        
         let fileView = sender.view!
         let translation = sender.translation(in: view)
         
@@ -36,11 +39,18 @@ class ViewController: UIViewController {
             fileImageView.center = CGPoint(x: fileView.center.x + translation.x, y: fileView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
-            break
+            // This fades the file image view out when it intersects with the trash image view
+            if fileView.frame.intersects(trashImageView.frame) {
+                UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
+            } else {
+            // This moves the file image view back to the point of origin if
+            // it does not intersect with the trash image view
+                UIView.animate(withDuration: 0.3, animations: {self.fileImageView.frame.origin = self.fileViewOrigin})
+            }
         default:
             break
         }
     }
-
+    
 }
 
