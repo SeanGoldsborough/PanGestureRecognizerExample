@@ -54,14 +54,13 @@ class ViewController: UIViewController {
     }
     
     func returnViewToOrigin(view:UIView) {
-        // This fades the file image view out when it intersects with the trash image view
-        UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
-    }
-    
-    func deleteView(view: UIView) {
         // This moves the file image view back to the point of origin if
         // it does not intersect with the trash image view
         UIView.animate(withDuration: 0.3, animations: {self.fileImageView.frame.origin = self.fileViewOrigin})
-        print("the file image view is now: \(view)")
+    }
+    
+    func deleteView(view: UIView) {
+        // This fades the file image view out when it intersects with the trash image view
+        UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
     }
 }
