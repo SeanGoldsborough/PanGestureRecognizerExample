@@ -13,6 +13,7 @@
 		C68C50F121359E9800F953BF /* PanGestureRecognizerExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C68C50EF21359E9800F953BF /* PanGestureRecognizerExample.xcdatamodeld */; };
 		C68C50F321359EA000F953BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68C50F221359EA000F953BF /* Assets.xcassets */; };
 		C68C50F621359EA000F953BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C68C50F421359EA000F953BF /* LaunchScreen.storyboard */; };
+		C69804E82135D6CE00D5BC60 /* paperThrow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C69804E72135D6CE00D5BC60 /* paperThrow.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C68C50F221359EA000F953BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C68C50F521359EA000F953BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C68C50F721359EA000F953BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C69804E72135D6CE00D5BC60 /* paperThrow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = paperThrow.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +63,19 @@
 				C68C50EC21359E9800F953BF /* Main.storyboard */,
 				C68C50F221359EA000F953BF /* Assets.xcassets */,
 				C68C50F421359EA000F953BF /* LaunchScreen.storyboard */,
+				C69804E92135D6D200D5BC60 /* AudioFiles */,
 				C68C50F721359EA000F953BF /* Info.plist */,
 				C68C50EF21359E9800F953BF /* PanGestureRecognizerExample.xcdatamodeld */,
 			);
 			path = PanGestureRecognizerExample;
+			sourceTree = "<group>";
+		};
+		C69804E92135D6D200D5BC60 /* AudioFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C69804E72135D6CE00D5BC60 /* paperThrow.mp3 */,
+			);
+			path = AudioFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C69804E82135D6CE00D5BC60 /* paperThrow.mp3 in Resources */,
 				C68C50F621359EA000F953BF /* LaunchScreen.storyboard in Resources */,
 				C68C50F321359EA000F953BF /* Assets.xcassets in Resources */,
 				C68C50EE21359E9800F953BF /* Main.storyboard in Resources */,

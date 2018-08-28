@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
     var fileViewOrigin: CGPoint!
+    var audioPlayer = AVAudioPlayer()
 
     @IBOutlet weak var fileImageView: UIImageView!
     @IBOutlet weak var trashImageView: UIImageView!
@@ -20,6 +22,18 @@ class ViewController: UIViewController {
         addPanGesture(view: fileImageView)
         fileViewOrigin = fileImageView.frame.origin
         view.bringSubview(toFront: fileImageView)
+        createAudioPlayer()
+    }
+    
+    func createAudioPlayer() {
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "paperThrow", ofType: ".mp3")!))
+            audioPlayer.prepareToPlay()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
 
     func addPanGesture(view: UIView){
@@ -60,6 +74,7 @@ class ViewController: UIViewController {
     
     func deleteView(view: UIView) {
         // This fades the file image view out when it intersects with the trash image view
+        audioPlayer.play()
         UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
         self.fileImageView = nil
         print("self.fileImageView is:\(self.fileImageView)")
