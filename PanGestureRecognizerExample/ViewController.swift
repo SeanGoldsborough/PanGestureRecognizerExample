@@ -29,16 +29,16 @@ class ViewController: UIViewController {
 
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         
-        let fileView = sender.view!
+        var fileView = sender.view!
         
         switch sender.state {
         case .began, .changed:
            moveViewWithPan(fileView: fileView, sender: sender)
         case .ended:
             if fileView.frame.intersects(trashImageView.frame) {
-               returnViewToOrigin(view: fileView)
-            } else {
                 deleteView(view: fileView)
+            } else {
+                returnViewToOrigin(view: fileView)
             }
         default:
             break
@@ -47,7 +47,6 @@ class ViewController: UIViewController {
     
     func moveViewWithPan(fileView: UIView, sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        
         // This enables us to move the file view along with the gesture recognizer
         fileImageView.center = CGPoint(x: fileView.center.x + translation.x, y: fileView.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: view)
@@ -62,5 +61,7 @@ class ViewController: UIViewController {
     func deleteView(view: UIView) {
         // This fades the file image view out when it intersects with the trash image view
         UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
+        self.fileImageView = nil
+        print("self.fileImageView is:\(self.fileImageView)")
     }
 }
