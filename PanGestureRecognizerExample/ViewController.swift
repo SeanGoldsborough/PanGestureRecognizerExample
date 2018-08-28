@@ -26,31 +26,42 @@ class ViewController: UIViewController {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(ViewController.handlePan(sender:)))
         view.addGestureRecognizer(pan)
     }
-    
-    // TODO: Refactor
+
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         
         let fileView = sender.view!
-        let translation = sender.translation(in: view)
         
         switch sender.state {
         case .began, .changed:
-            // This enables us to move the file view along with the gesture recognizer
-            fileImageView.center = CGPoint(x: fileView.center.x + translation.x, y: fileView.center.y + translation.y)
-            sender.setTranslation(CGPoint.zero, in: view)
+           moveViewWithPan(fileView: fileView, sender: sender)
         case .ended:
-            // This fades the file image view out when it intersects with the trash image view
             if fileView.frame.intersects(trashImageView.frame) {
-                UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
+               returnViewToOrigin(view: fileView)
             } else {
-            // This moves the file image view back to the point of origin if
-            // it does not intersect with the trash image view
-                UIView.animate(withDuration: 0.3, animations: {self.fileImageView.frame.origin = self.fileViewOrigin})
+                deleteView(view: fileView)
             }
         default:
             break
         }
     }
     
+    func moveViewWithPan(fileView: UIView, sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        
+        // This enables us to move the file view along with the gesture recognizer
+        fileImageView.center = CGPoint(x: fileView.center.x + translation.x, y: fileView.center.y + translation.y)
+        sender.setTranslation(CGPoint.zero, in: view)
+    }
+    
+    func returnViewToOrigin(view:UIView) {
+        // This fades the file image view out when it intersects with the trash image view
+        UIView.animate(withDuration: 0.3, animations: {self.fileImageView.alpha = 0.0})
+    }
+    
+    func deleteView(view: UIView) {
+        // This moves the file image view back to the point of origin if
+        // it does not intersect with the trash image view
+        UIView.animate(withDuration: 0.3, animations: {self.fileImageView.frame.origin = self.fileViewOrigin})
+        print("the file image view is now: \(view)")
+    }
 }
-
